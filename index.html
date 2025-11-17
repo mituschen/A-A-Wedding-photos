@@ -1,0 +1,59 @@
+<!--
+  WeddingGram Gallery
+
+  This static site is designed as a wedding‑photo gallery that mimics the familiar look and feel of Instagram.  
+  All assets live locally so the site can be hosted on GitHub Pages without any external dependencies.  
+  To add your own pictures, place them in the `images` folder and replicate one of the `<div class="photo-card">` blocks in
+  the gallery section below.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WeddingGram</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Top navigation bar -->
+  <header>
+    <div class="logo">WeddingGram</div>
+    <input type="text" class="search-bar" placeholder="Search…" aria-label="Search photos">
+    <div class="nav-icons">
+      <!-- Unicode icons provide a lightweight alternative to external icon fonts -->
+      <span class="icon" title="Notifications">&#x2764;</span>
+      <span class="icon" title="Upload">&#x1F4E5;</span>
+      <span class="icon" title="Profile">&#x1F464;</span>
+    </div>
+  </header>
+
+  <!-- Main content area -->
+  <main>
+    <div class="gallery">
+      <!-- Example photo cards.  
+           To add more, duplicate a card and update the `src` and caption text. -->
+      <div class="photo-card">
+        <img src="images/photo1.jpg" alt="Wedding rings on a table" />
+        <div class="caption">Our wedding rings catching the light.</div>
+      </div>
+      <div class="photo-card">
+        <img src="images/photo2.jpg" alt="Pastel flower bouquet" />
+        <div class="caption">The bridal bouquet in full bloom.</div>
+      </div>
+      <div class="photo-card">
+        <img src="images/photo3.jpg" alt="Two‑tier wedding cake" />
+        <div class="caption">A cake too pretty to eat!</div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal for enlarged photos -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <span class="close" role="button" aria-label="Close image">&times;</span>
+    <img class="modal-content" id="modal-image" alt="Expanded view" />
+    <div id="modal-caption"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
