@@ -1,0 +1,53 @@
+---
+---
+
+<!--
+  WeddingGram Gallery
+
+  This static site is designed as a wedding‑photo gallery that mimics the familiar look and feel of Instagram.  
+  All assets live locally so the site can be hosted on GitHub Pages without any external dependencies.  
+  To add your own pictures, simply drop JPEG or PNG files into the `images` folder.  When the site is built by Jekyll
+  (e.g., on GitHub Pages) it will automatically iterate over all images in that folder and create photo cards for them.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WeddingGram</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Top navigation bar -->
+  <header>
+    <div class="logo">WeddingGram</div>
+  </header>
+
+  <!-- Main content area -->
+  <main>
+    <div class="gallery">
+      <!-- Dynamically generated gallery using Jekyll’s Liquid templating.  
+           The loop iterates over all static files in the images folder and creates
+           a photo card for each JPEG/PNG image.  The caption is derived from
+           the file name by removing the extension and replacing hyphens/underscores with spaces. -->
+      {% assign gallery_images = site.static_files | where_exp: "file", "file.path contains '/images/'" %}
+      {% assign gallery_images = gallery_images | where_exp: "file", "file.path contains '.jpg' or file.path contains '.jpeg' or file.path contains '.png'" %}
+      {% for file in gallery_images %}
+      <div class="photo-card">
+        <img src="{{ file.path | relative_url }}" alt="{{ file.name }}" />
+        <div class="caption">{{ file.name | split: '.' | first | replace: '-', ' ' | replace: '_', ' ' | capitalize }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </main>
+
+  <!-- Modal for enlarged photos -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <span class="close" role="button" aria-label="Close image">&times;</span>
+    <img class="modal-content" id="modal-image" alt="Expanded view" />
+    <div id="modal-caption"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
